@@ -1,7 +1,7 @@
 package com.transition.api.entity;
 import java.sql.Date;
 
-
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,26 +22,28 @@ public class UserProfile {
 	private long contact;
 	private String gender;
 	private Date dateOfBirth;
-	private String carrerBreak;
-	private String adress;
+	private String careerBreak;
+	private String address;
 	private boolean criminalBackground;
+	
 	private float tenthPercentage;
 	private float twelthPercentage;
 	private String universityName;
 	private String organisationName;
 	private String position;
-	private WorkExperience workexperience;	
 	private String keySkills;
 	private String description;
 	private String linkedinLink;
 	private String gitLink;
+    @Embedded 
+	private WorkExperience workexperience;
 	
 	
 	
 	
 	
 	public UserProfile(long userId, String photoUrl, String fullName, String email, long contact, String gender, Date dateOfBirth,
-			String carrerBreak, String adress, boolean criminalBackground, float tenthPercentage,
+			String careerBreak, String address, boolean criminalBackground, float tenthPercentage,
 			float twelthPercentage, String universityName, String organisationName, String position,
 			WorkExperience workexperience, String keySkills, String description, String linkedinLink, String gitLink) {
 		super();
@@ -52,8 +54,8 @@ public class UserProfile {
 		this.contact = contact;
 		this.gender = gender;
 		this.dateOfBirth = dateOfBirth;
-		this.carrerBreak = carrerBreak;
-		this.adress = adress;
+		this.careerBreak = careerBreak;
+		this.address = address;
 		this.criminalBackground = criminalBackground;
 		this.tenthPercentage = tenthPercentage;
 		this.twelthPercentage = twelthPercentage;
@@ -126,20 +128,20 @@ public class UserProfile {
 		this.dateOfBirth = dateOfBirth;
 	}
 	
-	public String getCarrerBreak() {
-		return carrerBreak;
+	public String getcareerBreak() {
+		return careerBreak;
 	}
 	
-	public void setCarrerBreak(String carrerBreak) {
-		this.carrerBreak = carrerBreak;
+	public void setcareerBreak(String careerBreak) {
+		this.careerBreak = careerBreak;
 	}
 	
-	public String getAdress() {
-		return adress;
+	public String getaddress() {
+		return address;
 	}
 	
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setaddress(String address) {
+		this.address = address;
 	}
 	
 	public boolean isCriminalBackground() {
@@ -235,7 +237,7 @@ public class UserProfile {
 	public String toString() {
 		return "UserProfile [userId=" + userId + ", photoUrl=" + photoUrl + ", fullName=" + fullName + ", email="
 				+ email + ", contact=" + contact + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth
-				+ ", carrerBreak=" + carrerBreak + ", adress=" + adress + ", criminalBackground=" + criminalBackground
+				+ ", careerBreak=" + careerBreak + ", address=" + address + ", criminalBackground=" + criminalBackground
 				+ ", tenthPercentage=" + tenthPercentage + ", twelthPercentage=" + twelthPercentage
 				+ ", universityName=" + universityName + ", organisationName=" + organisationName + ", position="
 				+ position + ", workexperience=" + workexperience + ", keySkills=" + keySkills + ", description="

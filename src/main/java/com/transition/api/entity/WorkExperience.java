@@ -1,10 +1,15 @@
 package com.transition.api.entity;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class WorkExperience {
 
 	private int years;
 	private int months;
 	
+	public WorkExperience() {}
+	  
 	public WorkExperience(int years, int months ) {
 		this.years = years;
 		this.months = months;

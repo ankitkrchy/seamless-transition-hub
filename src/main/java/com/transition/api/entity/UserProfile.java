@@ -1,7 +1,6 @@
 package com.transition.api.entity;
 import java.sql.Date;
 
-import org.hibernate.annotations.GenerationTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

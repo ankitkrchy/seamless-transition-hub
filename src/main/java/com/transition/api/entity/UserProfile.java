@@ -39,7 +39,7 @@ public class UserProfile {
 	private WorkExperience workexperience;
 	
 	
-	
+    UserProfile(){}
 	
 	
 	public UserProfile(long userId, String photoUrl, String fullName, String email, long contact, String gender, Date dateOfBirth,

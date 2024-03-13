@@ -103,23 +103,7 @@ public class UserProfileService {
 				}
 			}
 			
-			//update and create new image file path for that image 
-			File directory = new File(uploadDir);
-			if(!directory.exists()) {
-				boolean created = directory.mkdir();
-				if(!created) {
-					throw new IOException("Failed to create directory: " + uploadDir);
-				}
-			}
-			
-			byte[] bytes = file.getBytes();
-			Path path = Paths.get(uploadDir + File.separator + "user_" + userId + "_" + file.getOriginalFilename());
-			Files.write(path, bytes);
-			
-			String filePath = path.toString();
-			
-			userProfile.setuserImageFilePath(filePath);
-			userProfileRepo.save(userProfile);
+			uploadUserProfileImage(userId, file);
 		
 		}
 	}

@@ -16,7 +16,7 @@ public class UserProfile {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long userId;
 	
-	private String photoUrl;
+	private String userImageFilePath;
 	private String fullName;
 	private String email;
 	private long contact;
@@ -42,13 +42,13 @@ public class UserProfile {
     UserProfile(){}
 	
 	
-	public UserProfile(long userId, String photoUrl, String fullName, String email, long contact, String gender, Date dateOfBirth,
+	public UserProfile(long userId, String userImageFilePath, String fullName, String email, long contact, String gender, Date dateOfBirth,
 			String careerBreak, String address, boolean criminalBackground, float tenthPercentage,
 			float twelthPercentage, String universityName, String organisationName, String position,
 			WorkExperience workexperience, String keySkills, String description, String linkedinLink, String gitLink) {
 		super();
 		this.userId = userId;
-		this.photoUrl = photoUrl;
+		this.userImageFilePath = userImageFilePath;
 		this.fullName = fullName;
 		this.email = email;
 		this.contact = contact;
@@ -80,12 +80,12 @@ public class UserProfile {
 	}
 
 
-	public String getPhotoUrl() {
-		return photoUrl;
+	public String getuserImageFilePath() {
+		return userImageFilePath;
 	}
 	
-	public void setPhotoUrl(String photoUrl) {
-		this.photoUrl = photoUrl;
+	public void setuserImageFilePath(String userImageFilePath) {
+		this.userImageFilePath = userImageFilePath;
 	}
 	
 	public String getFullName() {
@@ -235,7 +235,7 @@ public class UserProfile {
 
 	@Override
 	public String toString() {
-		return "UserProfile [userId=" + userId + ", photoUrl=" + photoUrl + ", fullName=" + fullName + ", email="
+		return "UserProfile [userId=" + userId + ", userImageFilePath=" + userImageFilePath + ", fullName=" + fullName + ", email="
 				+ email + ", contact=" + contact + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth
 				+ ", careerBreak=" + careerBreak + ", address=" + address + ", criminalBackground=" + criminalBackground
 				+ ", tenthPercentage=" + tenthPercentage + ", twelthPercentage=" + twelthPercentage
@@ -243,5 +243,7 @@ public class UserProfile {
 				+ position + ", workexperience=" + workexperience + ", keySkills=" + keySkills + ", description="
 				+ description + ", linkedinLink=" + linkedinLink + ", gitLink=" + gitLink + "]";
 	}
+
+
 		
 }

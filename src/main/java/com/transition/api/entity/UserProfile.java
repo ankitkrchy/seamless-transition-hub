@@ -1,11 +1,13 @@
 package com.transition.api.entity;
 import java.sql.Date;
+import java.util.List;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -38,6 +40,8 @@ public class UserProfile {
     @Embedded 
 	private WorkExperience workexperience;
 	
+	@OneToMany
+	private List<UserService> userServices;
 	
     UserProfile(){}
 	

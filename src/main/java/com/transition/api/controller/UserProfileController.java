@@ -22,24 +22,28 @@ public class UserProfileController {
 	@Autowired
 	private UserProfileService userProfileService;
 
+	//create user profile
 	@PostMapping("/save-userProfile")
 	public ResponseEntity<HttpStatus> saveUserProfile(@RequestBody UserProfile userProfile){
 		userProfileService.saveUserProfile(userProfile);
 		return ResponseEntity.ok(HttpStatus.ACCEPTED);
 	}
 	
+	//update user profile
 	@PutMapping("/update-userProfile/{id}")
 	public ResponseEntity<HttpStatus> updateUserProfile(@PathVariable long id , @RequestBody UserProfile userProfile ){
 		 userProfileService.updateUserProfile(id,userProfile);
 		 return ResponseEntity.ok(HttpStatus.ACCEPTED);
 	}
 	
+	//post user image
 	@PostMapping("/profile-image/{userId}")
 	    public ResponseEntity<HttpStatus> uploadImage(@PathVariable long userId, @RequestParam("file") MultipartFile file) throws IOException {
 	            userProfileService.uploadUserProfileImage(userId, file);
 	            return ResponseEntity.ok(HttpStatus.ACCEPTED);
     }
 	
+	//update user image
 	@PutMapping("/update-profile-image/{userId}")
 		public ResponseEntity<HttpStatus> updateImage(@PathVariable long userId, @RequestParam("file") MultipartFile file) throws IOException{
 				userProfileService.updateUserProfileImage(userId, file);

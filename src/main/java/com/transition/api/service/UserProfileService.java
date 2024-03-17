@@ -46,8 +46,8 @@ public class UserProfileService {
 		updateUser.setContact(userProfile.getContact());
 		updateUser.setGender(userProfile.getGender());
 		updateUser.setDateOfBirth(userProfile.getDateOfBirth());
-		updateUser.setcareerBreak(userProfile.getcareerBreak());
-		updateUser.setaddress(userProfile.getaddress());
+		updateUser.setCareerBreak(userProfile.getCareerBreak());
+		updateUser.setAddress(userProfile.getAddress());
 		updateUser.setCriminalBackground(userProfile.isCriminalBackground());
 		updateUser.setTenthPercentage(userProfile.getTenthPercentage());
 		updateUser.setTwelthPercentage(userProfile.getTwelthPercentage());
@@ -82,7 +82,7 @@ public class UserProfileService {
 	    Optional<UserProfile> userProfileOptional = userProfileRepo.findById(userId);
 	    if (userProfileOptional.isPresent()) {
 	        UserProfile userProfile = userProfileOptional.get();
-	        userProfile.setuserImageFilePath(filePath);
+	        userProfile.setUserImageFilePath(filePath);
 	        userProfileRepo.save(userProfile);
 	    } 
 	}
@@ -93,7 +93,7 @@ public class UserProfileService {
 		if(userProfileOptional.isPresent()) {
 			UserProfile userProfile = userProfileOptional.get();
 			//get userProfile
-			String existingFilePath = userProfile.getuserImageFilePath();
+			String existingFilePath = userProfile.getUserImageFilePath();
 			
 			//delete it 
 			if(existingFilePath!=null) {

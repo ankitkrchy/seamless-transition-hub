@@ -1,8 +1,12 @@
 package com.transition.api.entity;
 
 import jakarta.persistence.Embeddable;
+import lombok.Getter;
+import lombok.Setter;
 
 @Embeddable
+@Getter
+@Setter
 public class WorkExperience {
 
 	private int years;
@@ -12,22 +16,6 @@ public class WorkExperience {
 	  
 	public WorkExperience(int years, int months ) {
 		this.years = years;
-		this.months = months;
-	}
-
-	public int getYears() {
-		return years;
-	}
-
-	public void setYears(int years) {
-		this.years = years;
-	}
-
-	public int getMonths() {
-		return months;
-	}
-
-	public void setMonths(int months) {
 		this.months = months;
 	}
 

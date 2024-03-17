@@ -26,14 +26,14 @@ public class UserProfileController {
 	@PostMapping("/save-userProfile")
 	public ResponseEntity<HttpStatus> saveUserProfile(@RequestBody UserProfile userProfile){
 		userProfileService.saveUserProfile(userProfile);
-		return ResponseEntity.ok(HttpStatus.ACCEPTED);
+		return ResponseEntity.ok(HttpStatus.CREATED);
 	}
 	
 	//update user profile
 	@PutMapping("/update-userProfile/{id}")
 	public ResponseEntity<HttpStatus> updateUserProfile(@PathVariable long id , @RequestBody UserProfile userProfile ){
 		 userProfileService.updateUserProfile(id,userProfile);
-		 return ResponseEntity.ok(HttpStatus.ACCEPTED);
+		 return ResponseEntity.ok(HttpStatus.CREATED);
 	}
 	
 	//post user image

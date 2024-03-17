@@ -9,9 +9,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table
+@Getter
+@Setter
 public class UserProfile {
 
 	@Id
@@ -41,7 +45,7 @@ public class UserProfile {
 	private WorkExperience workexperience;
 	
 	@OneToMany
-	private List<UserService> userServices;
+	private List<Employment> employments;
 	
     UserProfile(){}
 	
@@ -74,169 +78,6 @@ public class UserProfile {
 	}
 
 	
-	public long getUserId() {
-		return userId;
-	}
-
-
-	public void setUserId(long userId) {
-		this.userId = userId;
-	}
-
-
-	public String getuserImageFilePath() {
-		return userImageFilePath;
-	}
-	
-	public void setuserImageFilePath(String userImageFilePath) {
-		this.userImageFilePath = userImageFilePath;
-	}
-	
-	public String getFullName() {
-		return fullName;
-	}
-	
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
-	
-	public String getEmail() {
-		return email;
-	}
-	
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	public long getContact() {
-		return contact;
-	}
-	
-	public void setContact(long contact) {
-		this.contact = contact;
-	}
-	
-	public String getGender() {
-		return gender;
-	}
-	
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-	
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
-	
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-	
-	public String getcareerBreak() {
-		return careerBreak;
-	}
-	
-	public void setcareerBreak(String careerBreak) {
-		this.careerBreak = careerBreak;
-	}
-	
-	public String getaddress() {
-		return address;
-	}
-	
-	public void setaddress(String address) {
-		this.address = address;
-	}
-	
-	public boolean isCriminalBackground() {
-		return criminalBackground;
-	}
-	
-	public void setCriminalBackground(boolean criminalBackground) {
-		this.criminalBackground = criminalBackground;
-	}
-	
-	public float getTenthPercentage() {
-		return tenthPercentage;
-	}
-	
-	public void setTenthPercentage(float tenthPercentage) {
-		this.tenthPercentage = tenthPercentage;
-	}
-	
-	public float getTwelthPercentage() {
-		return twelthPercentage;
-	}
-	
-	public void setTwelthPercentage(float twelthPercentage) {
-		this.twelthPercentage = twelthPercentage;
-	}
-	
-	public String getUniversityName() {
-		return universityName;
-	}
-	
-	public void setUniversityName(String universityName) {
-		this.universityName = universityName;
-	}
-	
-	public String getOrganisationName() {
-		return organisationName;
-	}
-	
-	public void setOrganisationName(String organisationName) {
-		this.organisationName = organisationName;
-	}
-	
-	public String getPosition() {
-		return position;
-	}
-	
-	public void setPosition(String position) {
-		this.position = position;
-	}
-	
-	public WorkExperience getWorkexperience() {
-		return workexperience;
-	}
-	
-	public void setWorkexperience(WorkExperience workexperience) {
-		this.workexperience = workexperience;
-	}
-	
-	public String getKeySkills() {
-		return keySkills;
-	}
-	
-	public void setKeySkills(String keySkills) {
-		this.keySkills = keySkills;
-	}
-	
-	public String getDescription() {
-		return description;
-	}
-	
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
-	public String getLinkedinLink() {
-		return linkedinLink;
-	}
-	
-	public void setLinkedinLink(String linkedinLink) {
-		this.linkedinLink = linkedinLink;
-	}
-	
-	public String getGitLink() {
-		return gitLink;
-	}
-	
-	public void setGitLink(String gitLink) {
-		this.gitLink = gitLink;
-	}
-
-
 	@Override
 	public String toString() {
 		return "UserProfile [userId=" + userId + ", userImageFilePath=" + userImageFilePath + ", fullName=" + fullName + ", email="

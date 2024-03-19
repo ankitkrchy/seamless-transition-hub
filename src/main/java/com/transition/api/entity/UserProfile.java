@@ -47,7 +47,10 @@ public class UserProfile {
 	@OneToMany
 	private List<Employment> employments;
 	
-    UserProfile(){}
+	@OneToMany
+	private List<Document> documents;
+	
+    public UserProfile(){}
 	
 	
 	public UserProfile(long userId, String userImageFilePath, String fullName, String email, long contact, String gender, Date dateOfBirth,

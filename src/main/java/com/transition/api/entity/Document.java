@@ -24,7 +24,7 @@ public class Document {
 	
 	private String userDocPath;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="userId")
 	private UserProfile user;

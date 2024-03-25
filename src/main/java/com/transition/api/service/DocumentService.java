@@ -13,12 +13,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.transition.api.customException.UserNotFoundException;
+import com.transition.api.customException.CustomNotFoundException;
 import com.transition.api.entity.Document;
 import com.transition.api.entity.UserProfile;
 import com.transition.api.repository.DocumentRepository;
 import com.transition.api.repository.UserProfileRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class DocumentService {
 
@@ -55,19 +58,23 @@ public class DocumentService {
 			     UserProfile user = checkUser.get();
 			     document.setUser(user);
 			    documentRepo.save(document);
+		        log.info("User profile image uploaded successfully for user ID: {}" + userId);
 		    }else {
+		    	log.error("Error while uploading Document for UserId : {}"+ userId);
 		    	throw new IllegalArgumentException("User with ID " + userId + " not found.");
 		    }  
 		}
 
 		//find all documents for user by user Id
 		public List<Document> findAllDocuments(long userId) {
+			log.info("Getting All Documents for UserId : {}" +userId);
 			return documentRepo.findAllByUserUserId(userId);
 		}
 
        //delete document by docId
 		public void deleteDoc(long docId) {
-			 documentRepo.findById(docId).orElseThrow(()-> new UserNotFoundException("Document with Id "+docId+" not found"));
+			 documentRepo.findById(docId).orElseThrow(()-> new CustomNotFoundException("Document with Id "+docId+" not found"));
+			 log.debug("Deleting document for DocId :{}"+ docId);
 			 documentRepo.deleteById(docId);
 		}
 
@@ -89,8 +96,8 @@ public class DocumentService {
 			  byte[] bytes = file.getBytes();
 	            Path path = Paths.get(uploadDir + File.separator + "document_" + docId + "_" + file.getOriginalFilename());
 	            Files.write(path, bytes);
-
 	            getDoc.setUserDocPath(path.toString());
+	            log.debug("Updating document for docId : {}"+ docId);
 	            documentRepo.save(getDoc);
 			
 		}

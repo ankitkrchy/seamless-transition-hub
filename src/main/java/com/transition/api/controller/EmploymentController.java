@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +39,13 @@ public class EmploymentController {
 	@GetMapping("/get-userService")
 	public List<Employment> getAllUserService(){
 		return employmentService.findAllUserServices();
+	}
+	
+	//delete user service for userID
+	@DeleteMapping("/delete-userService/{serviceId}")
+	public ResponseEntity<HttpStatus> deleteServiceForUserId(@PathVariable long serviceId){
+		employmentService.deleteUserServiceForUserId(serviceId);
+		return ResponseEntity.ok(HttpStatus.ACCEPTED);
 	}
 	
 }

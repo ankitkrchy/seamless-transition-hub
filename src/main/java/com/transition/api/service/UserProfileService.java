@@ -13,12 +13,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.transition.api.customException.UserNotFoundException;
+import com.transition.api.customException.CustomNotFoundException;
 import com.transition.api.entity.UserProfile;
 import com.transition.api.repository.UserProfileRepository;
 
+import lombok.extern.slf4j.Slf4j;
 
 
+@Slf4j
 @Service
 public class UserProfileService {
 
@@ -31,6 +33,7 @@ public class UserProfileService {
 	
 	//service to save profile
 	public UserProfile saveUserProfile(UserProfile userProfile) {
+		log.info("User profile saved successfully: {}", userProfile);
 		return userProfileRepo.save(userProfile);
 	}
 
@@ -39,7 +42,7 @@ public class UserProfileService {
 	public void updateUserProfile(long id, UserProfile userProfile) {
 		
 		UserProfile updateUser = userProfileRepo.findById(id).
-				orElseThrow(()-> new UserNotFoundException("User not exist with id "+ id));
+				orElseThrow(()-> new CustomNotFoundException("User not exist with id "+ id));
 		
 		updateUser.setFullName(userProfile.getFullName());
 		updateUser.setEmail(userProfile.getEmail());
@@ -59,7 +62,7 @@ public class UserProfileService {
 		updateUser.setLinkedinLink(userProfile.getLinkedinLink());
 		updateUser.setGitLink(userProfile.getGitLink());
 		
-		
+		log.debug("Updating user profile with ID: {}" + userProfile.getUserId());
 		userProfileRepo.save(updateUser);
 	}
 	
@@ -84,7 +87,11 @@ public class UserProfileService {
 	        UserProfile userProfile = userProfileOptional.get();
 	        userProfile.setUserImageFilePath(filePath);
 	        userProfileRepo.save(userProfile);
-	    } 
+	        log.info("User profile image uploaded successfully for user ID: {}" + userProfile.getUserId());
+	    }else {
+            log.error("User profile not found while uploading image for user ID: {}" + userId);
+	    	throw new CustomNotFoundException("User not found with ID: " + userId);
+	    }
 	}
 	
 	//update user profile Image 
@@ -100,11 +107,12 @@ public class UserProfileService {
 				File existingFile = new File(existingFilePath);
 				if(existingFile.exists()) {
 					existingFile.delete();
+                    log.debug("Deleted existing user profile image file: {}", existingFilePath);
 				}
 			}
 			
 			uploadUserProfileImage(userId, file);
-		
+            log.info("Updated user profile image for user ID: {}" + userId);
 		}
 	}
 

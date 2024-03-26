@@ -15,6 +15,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.transition.api.entity.UserProfile;
 import com.transition.api.service.UserProfileService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 @RequestMapping("/userProfile")
 public class UserProfileController {
@@ -25,6 +28,7 @@ public class UserProfileController {
 	//create user profile
 	@PostMapping("/save-userProfile")
 	public ResponseEntity<HttpStatus> saveUserProfile(@RequestBody UserProfile userProfile){
+		log.info("Saving userProfile");
 		userProfileService.saveUserProfile(userProfile);
 		return ResponseEntity.ok(HttpStatus.CREATED);
 	}
@@ -32,6 +36,7 @@ public class UserProfileController {
 	//update user profile
 	@PutMapping("/update-userProfile/{id}")
 	public ResponseEntity<HttpStatus> updateUserProfile(@PathVariable long id , @RequestBody UserProfile userProfile ){
+		 log.info("Updating User Profile for userId : "+id);
 		 userProfileService.updateUserProfile(id,userProfile);
 		 return ResponseEntity.ok(HttpStatus.CREATED);
 	}
@@ -39,6 +44,7 @@ public class UserProfileController {
 	//post user image
 	@PostMapping("/profile-image/{userId}")
 	    public ResponseEntity<HttpStatus> uploadImage(@PathVariable long userId, @RequestParam("file") MultipartFile file) throws IOException {
+				log.info("Uploading user Image for userId : "+userId);
 	            userProfileService.uploadUserProfileImage(userId, file);
 	            return ResponseEntity.ok(HttpStatus.ACCEPTED);
     }
@@ -46,6 +52,7 @@ public class UserProfileController {
 	//update user image
 	@PutMapping("/update-profile-image/{userId}")
 		public ResponseEntity<HttpStatus> updateImage(@PathVariable long userId, @RequestParam("file") MultipartFile file) throws IOException{
+			    log.info("Updating user Image for userId : "+userId);
 				userProfileService.updateUserProfileImage(userId, file);
 				return ResponseEntity.ok(HttpStatus.ACCEPTED);
 	}

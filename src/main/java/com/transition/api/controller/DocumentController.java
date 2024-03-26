@@ -19,6 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.transition.api.entity.Document;
 import com.transition.api.service.DocumentService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 @RequestMapping("/document")
 public class DocumentController {
@@ -28,6 +31,7 @@ public class DocumentController {
 	
 		@PostMapping("/upload/{userId}")
 		    public ResponseEntity<HttpStatus> uploadFile(@PathVariable long userId, @RequestParam("file") MultipartFile file) throws IOException {
+			log.info("Uploading document for userId : "+userId);
 			docService.uploadDocument(userId, file);
 			String contentType = file.getContentType();
 			if(contentType != null && (contentType.equals("application/pdf"))||
@@ -41,17 +45,20 @@ public class DocumentController {
 		
 		@GetMapping("/get-document/{userId}")
 		public List<Document> getAllDocumentsById(@PathVariable long userId){
+			log.info("Retriving all Documents for userId : "+userId);
 			return docService.findAllDocuments(userId);
 		}
 		
 		@DeleteMapping("/delete-document/{docId}")
 		public ResponseEntity<HttpStatus> deleteFile(@PathVariable long docId){
+			log.info("Deleting Document for docId : "+ docId);
 			docService.deleteDoc(docId);
 			return ResponseEntity.ok(HttpStatus.ACCEPTED);
 		}
 		
 		@PutMapping("/update-document/{docId}")
 		public ResponseEntity<HttpStatus> updateFile(@PathVariable long docId , MultipartFile file) throws IOException{
+			log.info("Updating Document with docIc : "+docId);
 			docService.updateDocumentByID(docId, file);
 			return ResponseEntity.ok(HttpStatus.ACCEPTED);
 		}

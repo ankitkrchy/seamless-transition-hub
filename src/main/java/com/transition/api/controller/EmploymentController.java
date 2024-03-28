@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.transition.api.entity.Employment;
 import com.transition.api.service.EmploymentService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 @RequestMapping("/userService")
 public class EmploymentController {
@@ -25,6 +28,7 @@ public class EmploymentController {
 	//post service data
 	@PostMapping("/save-userService")
 	public ResponseEntity<HttpStatus> saveUserService(@RequestBody Employment employment){
+		log.info("Saving Employment Details");
 		employmentService.saveUserService(employment);
 		return ResponseEntity.ok(HttpStatus.ACCEPTED);
 	}
@@ -32,18 +36,21 @@ public class EmploymentController {
 	//get services data by id
 	@GetMapping("/get-userService/{userId}")
 	public List<Employment> getUserServiceByUserId(@PathVariable(value = "userId") long userId){
+		log.info("Retriving Documents for userId : "+userId);
 		return employmentService.findAllServicesByUserId(userId);
 	}
 	
 	//get all services
 	@GetMapping("/get-userService")
 	public List<Employment> getAllUserService(){
+		log.info("Retriving all details of Employment");
 		return employmentService.findAllUserServices();
 	}
 	
 	//delete user service for userID
 	@DeleteMapping("/delete-userService/{serviceId}")
 	public ResponseEntity<HttpStatus> deleteServiceForUserId(@PathVariable long serviceId){
+		log.info("Deleting user Employment with employmentId : "+serviceId);
 		employmentService.deleteUserServiceForUserId(serviceId);
 		return ResponseEntity.ok(HttpStatus.ACCEPTED);
 	}

@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.transition.api.customException.CustomNotFoundException;
 import com.transition.api.entity.Employment;
+import com.transition.api.entity.UserProfile;
 import com.transition.api.repository.EmploymentRepository;
+import com.transition.api.repository.UserProfileRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,6 +21,9 @@ public class EmploymentService {
 	
 	@Autowired
 	private EmploymentRepository userServiceRepo;
+	
+	@Autowired
+	private UserProfileRepository userRepo;
 
 	//save service for user
 	public void saveUserService(Employment employment) {
@@ -31,9 +36,14 @@ public class EmploymentService {
 	
 	//find all services for user with userID
 	public  List<Employment> findAllServicesByUserId(long userId) {
-		List<Employment> services = userServiceRepo.findAllByUserUserId(userId);
-		log.info("Getting all userServices for userId : { }" + userId);
-		return services;
+		Optional<UserProfile> user = userRepo.findById(userId);
+		if(user.isPresent()) {
+			log.info("Getting all userServices for userId : { }" + userId);
+			 return userServiceRepo.findAllByUserUserId(userId);
+		}else {
+			throw new IllegalArgumentException("No Service found for userId : "+ userId);
+		}
+		
 	}
 
 	//get All services
@@ -49,7 +59,7 @@ public class EmploymentService {
 			log.info("Deleting employment with employmentId : {}" +serviceId);
 			userServiceRepo.deleteById(serviceId);
 		}else {
-			log.error("Error in getting Employment details with employmentId : {}"+serviceId);
+			log.error("Error in getting Employment details with employmentId : "+serviceId);
 			throw new CustomNotFoundException("Employment not exits with employmentId :" +serviceId);
 		}
 		

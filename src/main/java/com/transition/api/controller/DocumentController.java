@@ -62,4 +62,14 @@ public class DocumentController {
 			docService.updateDocumentByID(docId, file);
 			return ResponseEntity.ok(HttpStatus.ACCEPTED);
 		}
+		
+		@GetMapping("/download-allDocuments/{userId}")
+		public ResponseEntity<Object> getAllDocumentsInZip(@PathVariable long userId ) throws IOException{
+			return docService.getAllDocumentsInZip(userId);
+		}
+		
+		@GetMapping("view-document/{userId}/{docId}")
+		public ResponseEntity<Object> viewUserDocument(@PathVariable long userId, @PathVariable long docId){
+			return docService.viewUserDocument(userId,docId);
+		}
 }

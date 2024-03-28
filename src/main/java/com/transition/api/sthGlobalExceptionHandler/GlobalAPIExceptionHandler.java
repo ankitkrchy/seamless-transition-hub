@@ -17,9 +17,9 @@ public class GlobalAPIExceptionHandler {
 
 	@ExceptionHandler(NotFoundException.class)
 	public ResponseEntity<ErrorResponse> notFoundException(NotFoundException ex){
-		ErrorResponse errorResponse = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Not Found in DB Check request1.");
+		ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NO_CONTENT.value(), "Not Found in DB Check request1.");
 		errorResponse.setTimestamp(LocalDateTime.now());
-		return new ResponseEntity<>(errorResponse , HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<>(errorResponse , HttpStatus.NO_CONTENT);
 	}
 	
 	@ExceptionHandler(IllegalArgumentException.class)
